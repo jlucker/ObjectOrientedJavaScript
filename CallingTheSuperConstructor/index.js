@@ -1,17 +1,20 @@
 
-function Shape() {
-
+function Shape(color) {
+    this.color = color;
 }
 
 Shape.prototype.duplicate = function() {
     console.log('duplicate');
 }
 
-function Circle (radius) {
+function Circle (radius, color) {
+    // Calling shape with this instance of the circle object
+    Shape.call(this, color);
     this.radius = radius;
 }
 
 Circle.prototype = Object.create(Shape.prototype);
+Circle.prototype.constructor = Circle;
 
 // Prototype Members
 Circle.prototype.draw = function () {
@@ -20,4 +23,4 @@ Circle.prototype.draw = function () {
 
 
 const s = new Shape();
-const c = new Circle(1);
+const c = new Circle(1, 'red');
